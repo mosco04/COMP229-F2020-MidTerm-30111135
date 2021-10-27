@@ -51,6 +51,18 @@ router.get('/:id', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+    const id = req.params.id
+    book.findById(id, (err, books) => {
+      if (err) {
+        return console.error(err);
+      }
+      else {
+        res.render('books/details', {
+          title: 'Books',
+          books: books
+        });
+      }
+    });
 });
 
 // POST - process the information passed from the details form and update the document
@@ -59,6 +71,12 @@ router.post('/:id', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+     const id = req.params.id
+     const doc = req.body
+     console.log(doc);
+     book.updateOne({_id: id}, doc) .then(
+       () => res.redirect('/books')
+     )
 
 });
 
