@@ -41,7 +41,7 @@ router.post('/add', (req, res, next) => {
      * ADD CODE HERE *
      *****************/
     const doc = req.body                    // extract from details from the body of the post request
-    book. collection.insertOne(doc).then(
+    book.collection.insertOne(doc).then(
       () => res.redirect('/books')
     )
     
