@@ -1,3 +1,5 @@
+// Books.js || Edward Omere || 301111135 || Favourite Book List
+
 let mongoose = require('mongoose');
 
 // create a model class

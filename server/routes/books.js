@@ -1,3 +1,5 @@
+// Books.js || Edward Omere || 301111135 || Favourite Book List
+
 // modules required for routing
 let express = require('express');
 let router = express.Router();
@@ -38,8 +40,9 @@ router.post('/add', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
-    book.collection.insertOne(req.body).then(
-      e => res.redirect('/books')
+    const doc = req.body                    // extract from details from the body of the post request
+    book. collection.insertOne(doc).then(
+      () => res.redirect('/books')
     )
     
 
@@ -71,9 +74,8 @@ router.post('/:id', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
-     const id = req.params.id
-     const doc = req.body
-     console.log(doc);
+     const id = req.params.id    //extract the id from the param
+     const doc = req.body        //the form details are contained in the body
      book.updateOne({_id: id}, doc) .then(
        () => res.redirect('/books')
      )
@@ -86,6 +88,10 @@ router.get('/delete/:id', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+     const id = req.params.id
+     book.deleteOne({_id: id}).then(
+       () => res.redirect('/books')
+     )
 });
 
 
