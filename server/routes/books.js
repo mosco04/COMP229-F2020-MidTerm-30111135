@@ -25,13 +25,11 @@ router.get('/', (req, res, next) => {
 
 //  GET the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
-
+  // render details page to add a book
       res.render('books/details', {
         title: 'Add Books',
         books: {Title: '', Description: '', Price: '', Author: '', Genre: ''}
       });
-
-
 });
 
 // POST process the Book Details page and create a new Book - CREATE
@@ -40,6 +38,10 @@ router.post('/add', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+    book.collection.insertOne(req.body).then(
+      e => res.redirect('/books')
+    )
+    
 
 });
 
